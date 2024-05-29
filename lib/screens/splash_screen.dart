@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:loginapp/screens/login_screen.dart';
+import 'package:loginapp/screens/signup_screen.dart';
+import 'package:loginapp/widgets/my_button_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,6 +13,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final view = WidgetsBinding.instance.platformDispatcher.views.first;
+    final size = view.physicalSize;
+    final pixelRatio = view.devicePixelRatio;
+
+// Size in physical pixels:
+    final width = size.width;
+    final height = size.height;
+
+// Size in logical pixels:
+    final width2 = size.width / pixelRatio;
+    final height2 = size.height / pixelRatio;
+
+    print('width: $width, $width2');
+    print('height: $height, $height2');
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -58,7 +80,12 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(
                 width: MediaQuery.of(context).size.width / 1.5,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignupScreen()));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       side: BorderSide(color: Colors.deepPurple, width: 2),
